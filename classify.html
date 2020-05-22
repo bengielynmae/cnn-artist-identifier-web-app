@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div class='main'>
+            <h1 class='header1'>
+                Artist Classifier
+            </h1>
+            <h2 class='header2'>
+                add something something
+            </h2>
+        </div>
+        <div class='body'>
+            <div class='button'>
+                <h3>Upload painting you want to classify:</h3>
+                <form style='margin-top: 20px;' enctype="multipart/form-data" action='/new'>
+                    <button type='submit' style='width:10vw; height:3vh; font-size: small;'>New Submission</button>
+                </form>
+            </div>
+            <br>
+            <div class='painting_container' style='float: left; width: 70%;'>
+            </div>
+            <div class='prediction' style='float: left; padding-left: 20px; width: 25%;'>
+            
+            </div>
+        </div>
+    </body>
+    <script>
+        var painting_cont = document.querySelector('.painting_container')
+        var prediction_cont = document.querySelector('.prediction')
+        // fetch the image uploaded
+        fetch('/showimage').then(function (read) {
+            return read.json();
+        }).then(function (data){
+            var new_painting = document.createElement('img')
+            new_painting.src = data
+            new_painting.style='width: 100%'
+            painting_cont.appendChild(new_painting)
+        })
+        
+        // run prediction and show results
+        fetch('/classify').then(function (read) {
+            return read.json();
+        }).then(function (data) {
+            console.log(data)
+            var artist_prediction = document.createElement('h2')
+            artist_prediction.innerHTML = data['artist']
+            prediction_cont.appendChild(artist_prediction)
+
+            var probability = document.createElement('h3')
+            probability.innerHTML = 'This is the probability that the painting is made by ' + data['artist'] + ' : ' + data['probability']
+            prediction_cont.appendChild(probability)
+        })
+
+
+        
+    </script>
+</html>

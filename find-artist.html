@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='main'>
+        <h1 class='header1'>
+            Artist Classifier
+        </h1>
+        <h2 class='header2'>
+            add something something
+        </h2>
+    </div>
+    <div class='body'>
+        <div class='button'>
+            <h3>Upload painting you want to classify:</h3>
+            <form style='margin-top: 20px; width:10vw; height:3vh; font-size: small;' enctype="multipart/form-data" action='/upload' method='POST'>
+                <input type='file' name='upload'>
+                <button type='submit' style='width:10vw; height:3vh; font-size: small;'>Upload</button>
+            </form>
+        </div>
+        <div class='painting_container' style='float: left; width: 70vw;'>
+        </div>
+        <div class='prediction' style='float: left; padding-left: 20px; width: auto;'>
+        
+        </div>
+    </div>
+
+</body>
+
+</html>
